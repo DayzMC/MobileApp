@@ -271,6 +271,7 @@ deleteContact.addEventListener('click', function() {
     }
     for (let i = 0; i < contacts.length; i++) {
         console.log(console[i]);
+        contacts.splice(contacts[i],1)
         renderContacts(contacts);
         localStorage.setItem("contacts", JSON.stringify(contacts));
     }
