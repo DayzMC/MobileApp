@@ -19,7 +19,7 @@ const profileDescription = document.getElementById('profile-description');
 const contactsList = document.getElementById('contacts-list');
 const searchContactsForm = document.getElementById('contacts-search-form');
 const addContactForm = document.getElementById('add-contact-form');
-const deleteContactForm = document.getElementById('delete-cont');
+const deleteContact = document.getElementById('delete-cont');
 //const editTaskForm = document.getElementById("edit-task-form");
 const deleteContForm = document.getElementById("delete-cont-form");
 const contactName = document.querySelector("#modal-delete-cont #contact-name");
@@ -69,7 +69,7 @@ function createContactItem(contact) {
     `
 }
 
-deleteContactForm.addEventListener('click', function (contacts) {
+/*deleteContactForm.addEventListener('click', function (contacts) {
     for (let i = 0; i < contacts.length; i++) {
         localStorage.removeItem('contacts', contacts[i])
         renderContacts(contacts);
@@ -78,7 +78,7 @@ deleteContactForm.addEventListener('click', function (contacts) {
             contactName.dataset.index = index;
         } 
     }
-})
+})*/
 
 function renderContacts(contacts) {
     contactsList.innerHTML = '';
@@ -154,6 +154,9 @@ function menuBtnsBindEvent() {
         })
     }
 }
+
+
+
 
 function switchPage(activePage) {
     switch(activePage) {
@@ -256,6 +259,23 @@ btnClearStore.addEventListener('click', function() {
             location.reload();
         }
     }
+})
+
+
+// КНОПКА УДАЛЕНИЯ
+deleteContact.addEventListener('click', function() {
+    event.preventDefault();
+    const savedContacts = localStorage.getItem('contacts');
+    if (savedContacts) {
+        contacts = JSON.parse(savedContacts);
+    }
+    for (let i = 0; i < contacts.length; i++) {
+        console.log(console[i]);
+        renderContacts(contacts);
+        localStorage.setItem("contacts", JSON.stringify(contacts));
+    }
+    $("#modal-delete-cont").modal("hide");
+    return;
 })
 
 switchTheme.addEventListener('click', function() {
